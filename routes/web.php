@@ -9,6 +9,7 @@ use App\Http\Controllers\IdeaLikeontroller;
 use App\Http\Controllers\UserController;
 use Database\Factories\UserFactory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,6 @@ Route::get('/terms', function () {
     return view('terms');
 
 })->name('terms');
+
+
+Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['admin','auth']);

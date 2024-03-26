@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected $fillable =[
         'name',
         'bio',
         'image',
@@ -75,7 +75,7 @@ class User extends Authenticatable
 
     public function likes()
     {
-        return $this->belongsToMany(Idea::class,'idea_like')->withTimestamps();
+        return $this->belongsToMany(Idea::class, 'idea_like')->withTimestamps();
     }
 
     public function likesIdea(Idea $idea)
