@@ -9,38 +9,38 @@
 
                 <div class="form-group">
                     <label for="name" class="text-dark">Name:</label><br>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" placeholder="Enter the name" name="name" id="name" class="form-control">
                     @error('name')
                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label for="email" class="text-dark">Email:</label><br>
-                    <input type="email" name="email" id="email" class="form-control">
+                    <input type="email" placeholder="Enter the email" name="email" id="email" class="form-control">
                     @error('email')
                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label for="password" class="text-dark">Password:</label><br>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <input type="password" placeholder="Enter the password" name="password" id="password" class="form-control">
                     @error('password')
                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label for="confirm-password" class="text-dark">Confirm Password:</label><br>
-                    <input type="password" name="password_confirmation" id="confirm-password" class="form-control">
+                    <input type="password" placeholder="Renter the password" name="password_confirmation" id="confirm-password" class="form-control">
                     @error('password_confirmation')
                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="remember-me" class="text-dark"></label><br>
-                    <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
+                    <input type="submit" name="submit" class="btn btn-dark btn-md rounded" value="submit">
                 </div>
                 <div class="text-right mt-2">
-                    <a href="/login" class="text-dark">Login here</a>
+                    <a href="/login" class="text-dark ">Login here</a>
                 </div>
             </form>
         </div>
