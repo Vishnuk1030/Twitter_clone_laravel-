@@ -25,6 +25,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         $editing = true;
         $ideas = $user->ideas()->paginate(5);
         return view("users.edit", compact("user", 'editing', 'ideas'));
@@ -35,6 +36,8 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
+        $this->authorize('update', $user);
+
         $validated = request()->validate([
             "name" => "required|max:40|min:3",
             'bio' => "nullable|max:255|min:1",
@@ -46,7 +49,7 @@ class UserController extends Controller
             $imagePath = request()->file('image')->store('profile', 'public');
             $validated['image'] = $imagePath;
 
-            Storage::disk('public')->delete($user->image ??'');
+            Storage::disk('public')->delete($user->image ?? '');
         }
 
         $user->update($validated);
