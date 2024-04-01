@@ -1,6 +1,4 @@
 @auth()
-
-
     <h4 style="text-align: center"> Share yours ideas </h4>
     <div class="row">
         <form action="{{ route('ideas.store') }}" method="post">
@@ -19,5 +17,5 @@
 @endauth
 
 @guest()
-    <h4 style="text-align: center">Login to share yours ideas</h4>
+    <h4 class="text-center">{{ __('ideas.login_to_share') }}</h4>
 @endguest
