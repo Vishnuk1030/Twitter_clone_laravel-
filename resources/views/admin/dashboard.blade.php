@@ -1,7 +1,15 @@
 @extends('layout.layout')
 
-@section('title','Admin Dashboard')
+@section('title', 'Admin Dashboard')
 
 @section('content')
-<h1 class="text-center">Admin panel</h1>
+    <div class="row">
+        <div class="col-3">
+            @include('admin.shared.left-sidebar')
+        </div>
+        <div class="col-9">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+    </div>
 @endsection
