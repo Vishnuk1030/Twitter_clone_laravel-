@@ -17,5 +17,6 @@
 @endauth
 
 @guest()
+    {{-- language translation __ or trans --}}
     <h4 class="text-center">{{ __('ideas.login_to_share') }}</h4>
 @endguest

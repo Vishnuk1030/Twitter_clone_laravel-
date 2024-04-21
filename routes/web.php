@@ -31,29 +31,36 @@ View :what should be shown to the user(HTML and css/blade files)
 
 */
 
+Route::get('lang/{lang}', function ($lang) {
+    app()->setLocale($lang);
+
+    session()->put('locale', $lang);
+    return redirect()->route('dashboard');
+})->name('lang');
+
 //Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('ideas', IdeaController::class)->except(['index','create','show'])->middleware('auth');
+Route::resource('ideas', IdeaController::class)->except(['index', 'create', 'show'])->middleware('auth');
 
 Route::resource('ideas', IdeaController::class)->only(['show']);
 
 //ideas/{idea}/comments/
 Route::resource('ideas.comments', CommentController::class)->only(['store'])->middleware('auth');
 
-Route::resource('users',UserController::class)->only('show');
+Route::resource('users', UserController::class)->only('show');
 
 
-Route::resource('users',UserController::class)->only('edit','update')->middleware('auth');
+Route::resource('users', UserController::class)->only('edit', 'update')->middleware('auth');
 
-Route::get('profile', [UserController::class,'profile'])->middleware('auth')->name('profile');
+Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
 
-Route::post('users/{user}/follow',[FollowerController::class,'follow'])->middleware('auth')->name('users.follow');
-Route::post('users/{user}/unfollow',[FollowerController::class,'unfollow'])->middleware('auth')->name('users.unfollow');
+Route::post('users/{user}/follow', [FollowerController::class, 'follow'])->middleware('auth')->name('users.follow');
+Route::post('users/{user}/unfollow', [FollowerController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
 
 
-Route::post('ideas/{idea}/like',[IdeaLikeontroller::class,'like'])->middleware('auth')->name('ideas.like');
-Route::post('ideas/{idea}/unlike',[IdeaLikeontroller::class,'unlike'])->middleware('auth')->name('ideas.unlike');
+Route::post('ideas/{idea}/like', [IdeaLikeontroller::class, 'like'])->middleware('auth')->name('ideas.like');
+Route::post('ideas/{idea}/unlike', [IdeaLikeontroller::class, 'unlike'])->middleware('auth')->name('ideas.unlike');
 
 
 Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
@@ -62,8 +69,7 @@ Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
 Route::get('/terms', function () {
 
     return view('terms');
-
 })->name('terms');
 
 
-Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth','can:admin']);
+Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth', 'can:admin']);
