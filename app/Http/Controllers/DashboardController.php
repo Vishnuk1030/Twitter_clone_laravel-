@@ -14,18 +14,16 @@ class DashboardController extends Controller
     {
         // return new WelcomeEmail(auth()->user());
 
-        $ideas = Idea::orderBy("created_at", "DESC");
-
         //where content like %test%
-        if (request()->has('search')) {
-            $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%');
-        }
 
+        $ideas = Idea::when(request()->has('search'), function ($query) {
+            $query->search(request('search', ''));
+        })->orderBy("created_at", "DESC")->paginate(3);
 
         //ideas_count
 
         return view("dashboard", [
-            'ideas' => $ideas->paginate(3)
+            'ideas' => $ideas
         ]);
     }
 }
