@@ -23,7 +23,9 @@
                     @foreach ($ideas as $idea)
                         <tr>
                             <td>{{ $idea->id }}</td>
-                            <td>{{ $idea->user->name}}</td>
+                            <td>
+                                <a href="{{ route('users.show', $idea->user) }}">{{ $idea->user->name }}</a>
+                            </td>
                             <td>{{ $idea->content }}</td>
                             <td>{{ date('d-m-Y', strtotime($idea->created_at)) }}</td>
                             <td>
