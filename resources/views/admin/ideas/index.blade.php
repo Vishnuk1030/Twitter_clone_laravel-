@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'Users | Admin Dashboard')
+@section('title', 'Ideas | Admin Dashboard')
 
 @section('content')
     <div class="row">
@@ -8,27 +8,27 @@
             @include('admin.shared.left-sidebar')
         </div>
         <div class="col-9">
-            <h1 class="text-center">Users</h1>
+            <h1 class="text-center">Ideas</h1>
             <table class="table table-striped mt-3">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Joined At</th>
+                        <th>User</th>
+                        <th>Content</th>
+                        <th>Created At</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($ideas as $idea)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
+                            <td>{{ $idea->id }}</td>
+                            <td>{{ $idea->user->name}}</td>
+                            <td>{{ $idea->content }}</td>
+                            <td>{{ date('d-m-Y', strtotime($idea->created_at)) }}</td>
                             <td>
-                                <a href="{{ route('users.show', $user->id) }}">View</a>
-                                <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                <a href="{{ route('ideas.show', $idea->id) }}">View</a>
+                                <a href="{{ route('ideas.edit', $idea->id) }}">Edit</a>
                             </td>
 
                         </tr>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
             <div>
-                {{ $users->links() }}
+                {{ $ideas->links() }}
             </div>
         </div>
 
